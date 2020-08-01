@@ -29,3 +29,16 @@ echo installing pyenv virtualenv
 git clone https://github.com/yyuu/pyenv-virtualenv.git   $HOME/.pyenv/plugins/pyenv-virtualenv
 source $HOME/.bashrc
 
+echo installing Amazon Java distribution Corretto 11
+echo adding package to apt-repository, this process will hang sometimes and may need to be re-run.
+wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - 
+sudo add-apt-repository 'deb https://apt.corretto.aws stable main'
+
+echo installing corretto 11 JDK
+sudo apt-get update; sudo apt-get install -y java-11-amazon-corretto-jdk
+
+echo adding configs to .bashrc for vscode
+echo "## Java configs" >> $HOME/.bashrc
+echo "export JDK_HOME='$(which java)'" >> $HOME/.bashrc
+
+
